@@ -1,13 +1,20 @@
-#讀取檔案
-products = []
-with open ('products.csv', 'r', encoding = 'utf-8')as f:
-    for line in f :
-        if '商品,價格' in line:
-            continue
-        name, price = line.strip().split(',')
-        products.append([name, price])
+import os #operating system
 
-print(products)
+products = []
+#檢查檔案是否存在
+if os.path.isfile('products.csv'):
+    print('yeah!找到')
+    #讀取檔案
+    with open ('products.csv', 'r', encoding = 'utf-8')as f:
+        for line in f :
+            if '商品,價格' in line:
+                continue #跳過
+            name, price = line.strip().split(',') #strip 去頭尾空格''   split 使用(?)切割
+            products.append([name, price])
+    print(products)
+
+else:
+    print('找不到檔案')
 
 #讓使用者輸入
 # products = []
